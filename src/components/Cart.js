@@ -16,8 +16,14 @@ const Cart = () => {
   };
   return (
     <div className="mt-10 max-w-7xl px-4 mx-auto">
-      <div>
+      <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold">My Cart ({products.length})</h2>
+        <h3 className="text-2xl font-bold">
+          Total Price: $
+          {products.reduce((previousProduct, currentProduct) => {
+            return previousProduct + currentProduct.price;
+          }, 0)}
+        </h3>
       </div>
       <div className="my-10 grid grid-cols-2 gap-6">
         {products.map((product) => {
