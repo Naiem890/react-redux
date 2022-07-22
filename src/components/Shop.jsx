@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProducts } from "../app/features/productSlice";
+
 import Product from "./Product";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
-
+  const dispatch = useDispatch();
+  const { data: products } = useSelector((state) => state.product);
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products?limit=12&offset=1")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 mt-8">

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { remove } from "../app/features/cartSlice";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const products = useSelector((state) => state.cart);
@@ -9,7 +10,9 @@ const Cart = () => {
 
   const handleDelete = (id) => {
     dispatch(remove(id));
-    console.log(id);
+    toast.error("Product Removed successfully", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   };
   return (
     <div className="mt-10 max-w-7xl px-4 mx-auto">
